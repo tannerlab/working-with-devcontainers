@@ -1,0 +1,23 @@
+{
+  "name": "ai--${localWorkspaceFolderBasename}",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "remoteUser": "node",
+  "postCreateCommand": "cd /workspace && if [ ! -d \"node_modules\" ]; then npm ci; fi",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "biomejs.biome",
+        "bradlc.vscode-tailwindcss",
+        "maattdd.gitless",
+        "yoavbls.pretty-ts-errors",
+        "anthropic.claude-code",
+        "openai.chatgpt",
+        "Google.geminicodeassist"
+      ]
+    }
+  }
+}
