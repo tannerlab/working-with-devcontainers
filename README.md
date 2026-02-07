@@ -1,8 +1,8 @@
 # Working with Devcontainers
 
-Devcontainers are an easy way to run code inside a docker container during development. This is very advisable, because most code in your projects likely was not written by you, and could contain security risks when run as your (probably priviledged) user on your machine.
+Devcontainers are an easy way to run code inside a docker container during development. This is very advisable, because most code in your projects likely was not written by you, and could contain security risks when run as your (probably privileged) user on your machine.
 
-Additionally, due to the rise of AI-assisted development, it is very adviseable to run any AI agent inside a fully sandboxed environemnt, where they can't accidentally read and send contents of personal files or credentials used to run the app to the LLM provider or elsewhere on the internet.
+Additionally, due to the rise of AI-assisted development, it is very advisable to run any AI agent inside a fully sandboxed environment, where they can't accidentally read and send contents of personal files or credentials used to run the app to the LLM provider or elsewhere on the internet.
 
 ## Background
 
