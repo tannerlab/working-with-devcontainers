@@ -1,20 +1,24 @@
 {
   "name": "dev--${localWorkspaceFolderBasename}",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "args": {
+      "NODE_VERSION": "24"
+    }
   },
-  "initializeCommand": "bash -lc 'mkdir -p \"$HOME/dot-env-files\"; f=\"$HOME/dot-env-files/${localWorkspaceFolderBasename}.env\"; [ -f \"$f\" ] || : > \"$f\"'",
+  "initializeCommand": "bash -lc 'mkdir -p \"$HOME/code-envs\"; f=\"$HOME/code-envs/${localWorkspaceFolderBasename}.env\"; [ -f \"$f\" ] || : > \"$f\"'",
   "runArgs": [
     "--env-file",
-    "${env:HOME}/dot-env-files/${localWorkspaceFolderBasename}.env",
+    "${env:HOME}/code-envs/${localWorkspaceFolderBasename}.env",
     "-p",
     "3000:3000"
   ],
   "forwardPorts": [3000],
   "workspaceFolder": "/workspace",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-  "remoteUser": "node",
-  "postCreateCommand": "cd /workspace && if [ ! -d \"node_modules\" ]; then npm ci; fi",
+  "remoteUser": "vscode",
+  "postCreateCommand": "echo \"alias ll='ls -alF'\" >> $HOME/.bashrc && cd /workspace && if [ ! -d \"node_modules\" ]; then npm ci; fi",
+  "postStartCommand": "sudo chown -R vscode:vscode /vscode || true",
   "customizations": {
     "vscode": {
       "extensions": [

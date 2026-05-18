@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+set -eu
+
+REAL=/usr/bin/git
+
+cmd=""
+for a in "$@"; do
+  case "$a" in
+    -*) ;;
+    *) cmd="$a"; break ;;
+  esac
+done
+
+[ -z "${cmd}" ] && exec "$REAL" "$@"
+
+case "$cmd" in
+  status|diff|log|show|blame|grep|shortlog|describe|rev-parse|ls-files|cat-file|name-rev|for-each-ref|help|version|rev-list|merge-base|check-ignore|ls-tree|diff-tree|diff-index|diff-files)
+    exec "$REAL" "$@"
+    ;;
+  remote)
+    case " $* " in
+      *" -v "*|*" --verbose "*) exec "$REAL" "$@" ;;
+      *) echo "git remote (except -v/--verbose) disabled in AI container" >&2; exit 1 ;;
+    esac
+    ;;
+  *)
+    echo "git $cmd disabled in AI container (read-only mode)" >&2
+    exit 1
+    ;;
+esac

@@ -14,7 +14,7 @@ Both bind-mount the repo into `/workspace` (changes persist on the host).
 
 ### Env Files
 
-- Dev env file: `~/dot-env-files/{repo}.env` (auto-created if missing).
+- Dev env file: `~/code-envs/{repo}.env` (auto-created if missing).
 - File is empty by default; add required secrets there.
 - AI container gets no env file.
 - Keeping env files outside the repo keeps them out of the `/workspace` bind mount.

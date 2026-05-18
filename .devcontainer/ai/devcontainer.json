@@ -5,8 +5,9 @@
   },
   "workspaceFolder": "/workspace",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-  "remoteUser": "node",
-  "postCreateCommand": "cd /workspace && if [ ! -d \"node_modules\" ]; then npm ci; fi",
+  "remoteUser": "vscode",
+  "postCreateCommand": "echo \"alias ll='ls -alF'\" >> $HOME/.bashrc",
+  "postStartCommand": "sudo chown -R vscode:vscode /vscode || true",
   "customizations": {
     "vscode": {
       "extensions": [
