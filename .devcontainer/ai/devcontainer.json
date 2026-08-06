@@ -1,13 +1,23 @@
 {
   "name": "ai--${localWorkspaceFolderBasename}",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "args": {
+      "NODE_VERSION": "24"
+    }
   },
+  "containerEnv": {
+    "CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
+  },
+  "mounts": [
+    "source=ai-claude-${localWorkspaceFolderBasename},target=/home/vscode/.claude,type=volume",
+    "source=ai-codex-${localWorkspaceFolderBasename},target=/home/vscode/.codex,type=volume"
+  ],
   "workspaceFolder": "/workspace",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   "remoteUser": "vscode",
   "postCreateCommand": "echo \"alias ll='ls -alF'\" >> $HOME/.bashrc",
-  "postStartCommand": "sudo chown -R vscode:vscode /vscode || true",
+  "postStartCommand": "sudo chown -R vscode:vscode /vscode $HOME/.claude $HOME/.codex || true",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -16,8 +26,7 @@
         "maattdd.gitless",
         "yoavbls.pretty-ts-errors",
         "anthropic.claude-code",
-        "openai.chatgpt",
-        "Google.geminicodeassist"
+        "saoudrizwan.cline-nightly"
       ]
     }
   }

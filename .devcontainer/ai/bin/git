@@ -14,7 +14,7 @@ done
 [ -z "${cmd}" ] && exec "$REAL" "$@"
 
 case "$cmd" in
-  status|diff|log|show|blame|grep|shortlog|describe|rev-parse|ls-files|cat-file|name-rev|for-each-ref|help|version|rev-list|merge-base|check-ignore|ls-tree|diff-tree|diff-index|diff-files)
+  status|diff|log|show|blame|grep|shortlog|describe|rev-parse|ls-files|cat-file|name-rev|for-each-ref|help|version|config|rev-list|branch|tag|stash|merge-base|check-ignore|ls-tree|symbolic-ref|diff-tree|diff-index|+diff-files|hash-object)
     exec "$REAL" "$@"
     ;;
   remote)
